@@ -6,46 +6,65 @@
 **Repository**: https://github.com/luiscastillo718-cell/GSE65682-Galectin-Analysis-MSCA
 
 ## Overview
-Reproducible re-analysis of the MARS consortium dataset GSE65682 focusing on LGALS1, LGALS3 and LGALS9.  
-The analyses address two key scientific questions raised during proposal development:
+Reproducible re-analysis of the MARS consortium dataset GSE65682 focusing on LGALS1, LGALS3 and LGALS9 transcript expression in human sepsis.  
+The repository documents a progressive series of analyses that strengthen the rationale for the Glyco-Sep project.
 
-1. Do endotype differences in galectin expression persist after adjustment for monocyte fraction, age and sex?
-2. Are there coordinated glycosylation-related transcriptional programmes that co-vary with the galectins?
+---
 
-## Analyses included
+## Analysis Workflow (Logical Order)
 
-### 1. Endotype-selective galectin expression (composition-adjusted)
+### 1. Original Endotype Analysis
+Basic characterisation of LGALS1, LGALS3 and LGALS9 expression across the four Mars endotypes, including survival associations.
+
+**Main files**
+- `GSE65682_Galectin_Analysis_V13.R`
+- `MSCA_Individual_Galectin_Analysis.pdf`
+
+### 2. Robust Association with Inferred Immune Cell Fractions (ANCOVA)
+Exploratory analysis testing whether galectin expression is associated with specific immune compartments after adjustment for age and endotype (Benjamini–Hochberg FDR correction).
+
+**Main files**
+- `GSE65682_Robust_Galectin_Immune_Analysis.R`
+- `Robust_Galectin_Immune_Heatmap.pdf`
+- `Galectin_Immune_Adjusted_Robust.csv`
+
+### 3. Composition-Adjusted Endotype Effects (Monocyte + Age + Sex)
+Addresses the critical question: *Do endotype differences in galectin expression persist after adjusting for monocyte abundance, age and sex?*
+
 - Linear models: `LGALS ~ Mars endotype + Monocyte_score + Age + Sex`
-- Estimated marginal means for all four Mars endotypes
+- Estimated marginal means for all four endotypes
 - Pairwise contrasts (Tukey-adjusted)
-- Key finding: LGALS3 remains significantly higher in Mars1 after full adjustment
 
-### 2. Glycosylation-related transcriptional modules
-Curated panel of glycosylation machinery genes grouped into five modules:
+**Key finding**: LGALS3 remains significantly higher in Mars1 after full adjustment.
+
+**Main files**
+- `GSE65682_Adjusted_Means_Significance.R`
+- `Galectin_Adjusted_Means_All_Endotypes.pdf`
+- `Galectin_Adjusted_Means_with_Significance.pdf`
+- `Forest_Endotype_Effect_Full_Adjustment.pdf`
+- `Galectin_Pairwise_Contrasts_Adjusted.csv`
+- `GSE65682_galectin_monocyte_sex_master.csv`
+
+### 4. Glycosylation-Related Transcriptional Modules
+First “glyco” signal at the transcriptomic level. Curated modules of glycosylation machinery genes were evaluated for:
+- Differences across Mars endotypes
+- Correlation with LGALS1, LGALS3 and LGALS9
+
+**Modules**
 - N-glycan branching (MGATs)
 - LacNAc / poly-LacNAc extension (B3GNTs, GCNTs)
-- Core-1 O-glycosylation (C1GALT1, C1GALT1C1)
+- Core-1 O-glycosylation (C1GALT1 / C1GALT1C1)
 - Sialylation (ST3GALs, ST6GALs, ST6GALNACs)
 - Fucosylation (FUTs)
 
-**Results**:
-- All five modules differ highly significantly across Mars endotypes
-- Multiple modules show significant Spearman correlations with LGALS1, LGALS3 and LGALS9 (BH-adjusted)
+**Main files**
+- `GSE65682_Glyco_Modules_Analysis.R`
+- `Glyco_Modules_by_Endotype_Heatmap.pdf`
+- `Glyco_Modules_vs_Galectins_Correlation.pdf`
+- `Glyco_Modules_Endotype_Stats.csv`
+- `Glyco_Modules_vs_Galectins_Correlation.csv`
 
-### 3. Earlier analyses (still present)
-- Original endotype boxplots and survival analyses
-- Robust ANCOVA of galectin–immune cell associations
-
-## Key Files
-| File | Description |
-|------|-------------|
-| `GSE65682_Galectin_Analysis_V13.R` | Original multi-panel analysis |
-| `GSE65682_Robust_Galectin_Immune_Analysis.R` | ANCOVA + FDR immune association analysis |
-| `GSE65682_Glyco_Modules_Analysis.R` | Glycosylation modules + correlations with galectins |
-| `Galectin_Adjusted_Means_*.pdf / .csv` | Fully adjusted expression across endotypes |
-| `Glyco_Modules_by_Endotype_Heatmap.pdf` | Module scores across Mars endotypes |
-| `Glyco_Modules_vs_Galectins_Correlation.pdf` | Correlation heatmap (modules × galectins) |
-| `session_info.txt` | Exact R / Bioconductor versions |
+---
 
 ## How to Reproduce
 1. Clone the repository
