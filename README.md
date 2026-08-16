@@ -35,6 +35,9 @@ Addresses the critical question: *Do endotype differences in galectin expression
 - Estimated marginal means for all four endotypes
 - Pairwise contrasts (Tukey-adjusted)
 
+**Monocyte score genes**  
+`CD14`, `CD68`, `CSF1R`, `LYZ`, `MAFB`, `FCGR1A`, `ITGAM`, `S100A8`, `S100A9`
+
 **Key finding**: LGALS3 remains significantly higher in Mars1 after full adjustment.
 
 **Main files**
@@ -46,16 +49,17 @@ Addresses the critical question: *Do endotype differences in galectin expression
 - `GSE65682_galectin_monocyte_sex_master.csv`
 
 ### 4. Glycosylation-Related Transcriptional Modules
-First “glyco” signal at the transcriptomic level. Curated modules of glycosylation machinery genes were evaluated for:
-- Differences across Mars endotypes
-- Correlation with LGALS1, LGALS3 and LGALS9
+First “glyco” signal at the transcriptomic level. Curated modules of glycosylation machinery genes were evaluated for differences across Mars endotypes and correlation with LGALS1/3/9.
 
-**Modules**
-- N-glycan branching (MGATs)
-- LacNAc / poly-LacNAc extension (B3GNTs, GCNTs)
-- Core-1 O-glycosylation (C1GALT1 / C1GALT1C1)
-- Sialylation (ST3GALs, ST6GALs, ST6GALNACs)
-- Fucosylation (FUTs)
+**Module gene composition**
+
+| Module | Genes included |
+|--------|----------------|
+| **N-glycan branching** | MGAT1, MGAT2, MGAT3, MGAT4A, MGAT4B |
+| **LacNAc / poly-LacNAc extension** | B3GNT2, B3GNT3, B3GNT5, B3GNT8, GCNT1, GCNT2 |
+| **Core-1 O-glycosylation** | C1GALT1, C1GALT1C1 |
+| **Sialylation** | ST3GAL1, ST3GAL4, ST3GAL6, ST6GAL1, ST6GALNAC1, ST6GALNAC2, ST6GALNAC4 |
+| **Fucosylation** | FUT4, FUT7, FUT8 |
 
 **Main files**
 - `GSE65682_Glyco_Modules_Analysis.R`
